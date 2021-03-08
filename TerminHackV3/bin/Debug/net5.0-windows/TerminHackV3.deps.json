@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "TerminHackV3/1.0.0": {
+        "runtime": {
+          "TerminHackV3.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TerminHackV3/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

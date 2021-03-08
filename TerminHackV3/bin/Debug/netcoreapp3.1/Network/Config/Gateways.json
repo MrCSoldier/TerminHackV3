@@ -1,0 +1,55 @@
+﻿[
+  {
+    "Ipv4Address": "1.2.3.4",
+    "Devices": [
+      {
+        "IpAddress": "192.168.1.2",
+        "Execuatbles": [
+          {
+            "Name": "Skype",
+            "NetworkInterfacePort": 9001
+          }
+        ]
+      },
+      {
+        "IpAddress": "192.168.1.6",
+        "Execuatbles": [
+          {
+            "Name": "Steam",
+            "NetworkInterfacePort": 45578
+          },
+          {
+            "Name": "Apache Web Server",
+            "NetworkInterfacePort": 8080
+          }
+        ]
+      },
+      {
+        "IpAddress": "192.168.22.55",
+        "Executables": [
+          {
+            "name": "Waterwolf Browser",
+            "NetworkInterfacePort": 80
+          },
+          {
+            "name": "Waterwolf Browser",
+            "NetworkInterfacePort": 443
+
+          },
+          {
+            "name": "Waterwolf Browser",
+            "NetworkInterfacePort": 21
+          },
+          {
+            "name": "Walls 10 Assistant",
+            "NetworkInterfacePort": 80
+          },
+          {
+            "name": "GrubFile",
+            "NetworkInterfacePort": 21
+          }
+        ]
+      }
+    ]
+  }
+]
