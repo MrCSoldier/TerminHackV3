@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TerminHackV3": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
