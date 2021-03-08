@@ -1,0 +1,2 @@
+- make each terminals created work on separate instance of application
+- make the window be dragged anywhere. Even if the window is being dragged on the label.
