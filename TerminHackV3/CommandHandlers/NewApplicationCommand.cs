@@ -10,7 +10,10 @@
             return command == "new";
         }
 
-
+        public float DelayCommand(float slowdownProcessingSpeed)
+        {
+            return slowdownProcessingSpeed;
+        }
 
         public void Handle(string[] arguments, MainTerminal terminal)
         {
@@ -18,6 +21,8 @@
             {
                 case "terminal":
                     new MainTerminal().Show();
+                    terminal.WriteToBuffer("Successfully Openned a new Terminal");
+                    terminal.FlushBuffer();
                     //Close();
 
                     break;

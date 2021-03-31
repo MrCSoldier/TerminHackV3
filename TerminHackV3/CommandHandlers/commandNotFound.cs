@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace TerminHackV3.CommandHandlers
 {
-    class commandNotFound
+    public class CommandNotFound
     {
         public string[] arguments = new string[1];
         public MainTerminal terminal = new MainTerminal();
 
-        public void Handle(string[] arguments, MainTerminal terminal)
-        {
 
+
+        public void Handle(MainTerminal terminal)
+        {
+            terminal.WriteToBuffer("bash: Command not found");
+            terminal.FlushBuffer();
         }
     }
 }

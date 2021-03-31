@@ -14,7 +14,7 @@ namespace TerminHackV3.CommandHandlers
         public MainTerminal terminal = new MainTerminal();
         public bool AppliesTo(string command)
         {
-            return command == "portscan";
+            return command == "nmap";
         }
 
         private const string _commandSyntax = "portscan <ip> <from> <to>";
@@ -31,6 +31,7 @@ namespace TerminHackV3.CommandHandlers
 
             if (!int.TryParse(arguments[1], out var portFrom))
             {
+                terminal.ChangeTextColour("red");
                 terminal.WriteToBuffer($"Invalid syntax: {_commandSyntax}");
                 terminal.FlushBuffer();
                 return;
@@ -42,9 +43,8 @@ namespace TerminHackV3.CommandHandlers
                 terminal.FlushBuffer();
                 return;
             }
-            
-            var gateway = NetworkHandler.GetGateway(arguments[0]);
 
+            var gateway = NetworkHandler.GetGateway(arguments[0]);
             if (gateway == null)
             {
                 terminal.WriteToBuffer("Invalid syntax: connect <ip address>");
@@ -69,10 +69,23 @@ namespace TerminHackV3.CommandHandlers
             for (var i = portFrom; i <= portTo; i++)
             {
                 var portState = openPorts.Contains(i) ? "OPEN" : "CLOSED"; //short if staement. if(openports.Contains(i)) { portstate = "OPEN" } else { pertstate = "CLSOED" } 
-                terminal.WriteToBuffer($"Port {i} - {portState}");  //Sends Output as $"Port {i} - {portState}"
+                terminal.WriteToBuffer($"PORT   STATE   SERVICE \n {i} - {portState}");  //Sends Output as $"Port {i} - {portState}"
             }
 
             
+            if (gateway != null)
+            {
+                terminal.WriteToBuffer("Connecting to IP Address  " + arguments[0] + "..>");
+                terminal.FlushBuffer();
+                terminal.ChangeTextColour("Green");
+                terminal.WriteToBuffer("Successfully Connected to " + arguments[0]);
+            }
+            else
+            {
+                terminal.ChangeTextColour("red");
+                terminal.WriteToBuffer("Connect: IPv4 address either not found or invalid");
+            }
+
 
             terminal.FlushBuffer();
         }

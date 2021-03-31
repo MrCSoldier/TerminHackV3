@@ -10,17 +10,14 @@ namespace TerminHackV3.CommandHandlers
     {
         public bool AppliesTo(string command)
         {
+            
             return command == "clear";
         }
 
         public void Handle(string[] arguments, MainTerminal terminal)
         {
-            for (int i = 0; i < 40;)
-            {
-                terminal.WriteToBuffer("");
-                terminal.FlushBuffer();
-            }
-            return;
+            terminal.Clear();
+
         }
     }
 }
