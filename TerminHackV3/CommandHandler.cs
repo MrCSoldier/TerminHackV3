@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TerminHackV3.CommandHandlers;
+using System.Text;
+
 
 namespace TerminHackV3
 {
     public static class CommandHandler
     {
-
-        public static List<string> ValidCommand = new List<string> { "new", "connect", "portscan", "exit", "show" };
+        public static List<string> ValidCommand = new List<string> { "new", "connect", "portscan", "exit", "show", "clear", "echo", "music" };
 
         private static readonly IEnumerable<ICommandHandler> _commandHandlers = new ICommandHandler[] {
             new NewApplicationCommand(),
@@ -15,26 +16,26 @@ namespace TerminHackV3
             new PortScanCommand(),
             new ArgumentCommand(),
             new ExitCommand(),
-            new ClearCommand()
+            new ClearCommand(),
+            new EchoCommand(),
+            new MusicCommand()
         };
 
         public static void HandleCommand(string command, string[] arguments, MainTerminal terminal)
         {
-
-            var handler = _commandHandlers.Single(x => x.AppliesTo(command));
-            handler.Handle(arguments, terminal);
-            
-            
-            /*var handlerCount = handler.;
-            if (handlerCount > 1)
+            command.ToLower();
+            if (ValidCommand.Contains(command))
             {
-                throw new InvalidOperationException($"There were multiple handlers registered to the command.");
+                var handler = _commandHandlers.Single(x => x.AppliesTo(command));
+                handler.Handle(arguments, terminal);
             }
-            if (handlerCount < 1)
+            else
             {
-                throw new InvalidOperationException($"There were no handlers registered to the command.");
-                //terminal.WriteToBuffer(command + " is not a valid command");
-            }*/
+                terminal.ChangeTextColour("red");
+                terminal.WriteToBuffer("Unknown Command: " + command);
+                terminal.FlushBuffer();
+            }
         }
     }
+
 }
